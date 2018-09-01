@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"  >
+<head>
+    <meta charset="UTF-8">
+    <title>Weather prediction</title>
+    <link rel="stylesheet" href="Style_ICP2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+</head>
+<body>
+<div ng-app="weather" ng-controller="weatherctrl">
+    <h1><b><i>Weather Updates</i></b></h1>
+    <label>City Name </label>
+    <input type="text" ng-model="city_name" id="city_name" placeholder="City Name">
+    <br>
+    <br>
+    <label>State Code</label>
+    <input type="text" ng-model="state_code" id="state_code" placeholder="State Code">
+    <button id="btn" ng-click="getWeather()"> Show Weather </button>
+    <br/>
+    <br/>
+    <table>
+        <tr> <!-- Table column headers to be displayed to user for output -->
+            <th>Condition</th>
+            <th>Temp (F)</th>
+            <th>Feels Like (F)</th>
+        </tr>
+        <tr ng-repeat="x in result| limitTo:5"><!-- Iteration loop to retrieve data for 5 consecutive hours -->
+            <td>{{ x.condition }}</td>
+            <td>{{ x.temp.english }}</td>
+            <td>{{ x.feelslike.english }}</td>
+        </tr>
+    </table>
+</div>
+</body>
+<script> <!-- Angular JS script section -->
+    angular.module('weather',[])
+        .controller('weatherctrl', function($scope, $http) {
+            $scope.result = [];
+            $scope.getWeather = function() {
+                <!-- City name and state code fields input being used here to evaluate -->
+                let city=document.getElementById("city_name").value;
+                let state=document.getElementById("state_code").value;
+                <!-- Service API for weather from which the information is extracted -->
+                $http.get('http://api.wunderground.com/api/4bbbc25f4f5946dd/hourly/q/'+state+'/'+city+'.json').success(function(data)
+                {
+                    console.log(data);
+                    <!-- Information extracted via API is stored in here -->
+                    $scope.result = data["hourly_forecast"];
+                })
+            }
+        });
+</script>
+</html>
