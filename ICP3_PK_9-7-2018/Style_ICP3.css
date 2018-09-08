@@ -1,0 +1,14 @@
+body
+{
+    background-image: url("healthyeating.jpg");
+    background: lightblue; /* Set background color */
+    color: black; /* Set text color */
+    font-family: sans-serif; /* Set font */
+}
+td, th
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+

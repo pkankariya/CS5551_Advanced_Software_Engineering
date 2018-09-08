@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> ICP3_PK </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Style_ICP3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+</head>
+<body>
+<div ng-app="Nutrition" ng-controller="nutriCtrl">
+    <!-- Start angular app -->
+    <!-- Webpage START -->
+    <h1><i><b>Nutritional Information</b></i></h1>
+    <!-- Input field -->
+    <label><b><i>Food Item</i></b></label>
+    <input type="text" name="input"  id="inputName" ng-model="inputName">
+    <!-- Button field to access information -->
+    <button id="btn" ng-click="getInfo()"> Get Info </button>
+    <br>
+    <table>
+        <!-- Display output result retrieved from API -->
+        <tr>
+            <th>Name</th>
+            <th>Calories</th>
+            <th>Serving Weight in Grams</th>
+        </tr>
+        <tr>
+            <td>{{item_name}}</td>
+            <td>{{calories}}</td>
+            <td>{{serveWtGrams}}</td>
+        </tr>
+    </table>
+    <!-- Webpage END -->
+</div> <!-- End angular app -->
+<!-- Javascript START -->
+<script>
+    angular.module("Nutrition", [])
+        .controller ("nutriCtrl", function ($scope, $http)
+        {
+            $scope.getInfo = function ()
+            {
+                let inputName=document.getElementById("inputName").value;
+                // Calling nutri function to get nutritional information
+                $http.get('https://api.nutritionix.com/v1_1/search/'+inputName+'?results=0:1&fields=*&appId=fe87f241&appKey=8abd88bac4c54e3c211e616880d38c76').success(function(data)
+                {
+                    console.log(data);
+                    $scope.item_name = data["hits"]["0"]["fields"]["item_name"];
+                    $scope.calories = data["hits"]["0"]["fields"]["nf_calories"];
+                    $scope.serveWtGrams = data["hits"]["0"]["fields"]["nf_serving_weight_grams"];
+
+                    let textToRead = "Item found is" +$scope.item_name + " " + $scope.calories + " " + $scope.serveWtGrams;
+                    let url='https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=4523153a-7e8d-48ae-af10-62ad7c9bfd75&password=wDgyZ2j43WyV&text='+textToRead;
+                    let audio = new Audio(url);
+                    audio.play();
+                })
+            }
+        });
+    // Calling watson function to hear the item for which nutritional information is collected
+</script>
+<!-- Javascript END -->
+</body>
+</html>
