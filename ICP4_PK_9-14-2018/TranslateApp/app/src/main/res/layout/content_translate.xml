@@ -42,6 +42,25 @@
             android:textColor="#3b40c6"
             android:layout_marginTop="20dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/btn_Search"
             style="@style/Base.Widget.AppCompat.Button"
@@ -50,8 +69,17 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:onClick="translateText"
-            android:text="Convert"
+            android:text="Translate"
             android:textColor="#ba6349" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_weight="0.10"
+            android:onClick="logout"
+            android:text="Logout" />
 
     </LinearLayout>
 </RelativeLayout>

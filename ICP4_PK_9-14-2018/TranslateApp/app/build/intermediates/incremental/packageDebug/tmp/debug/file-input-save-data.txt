@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Sep 12 14:34:36 CDT 2018
+#Fri Sep 14 01:16:59 CDT 2018
 1.base=C\:\\Users\\Anurag\\Desktop\\CS5551_Student23_ICP\\ICP4_PK_9-14-2018\\TranslateApp\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\11
 2.path=classes.dex
 0.baseType=DIRECTORY

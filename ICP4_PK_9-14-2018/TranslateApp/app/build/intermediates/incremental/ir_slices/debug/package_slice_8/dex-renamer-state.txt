@@ -1,4 +1,4 @@
-#Wed Sep 12 14:34:35 CDT 2018
+#Fri Sep 14 01:16:59 CDT 2018
 base.0=C\:\\Users\\Anurag\\Desktop\\CS5551_Student23_ICP\\ICP4_PK_9-14-2018\\TranslateApp\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\8
 path.0=classes.dex
 renamed.0=classes.dex
